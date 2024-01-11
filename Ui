@@ -44,13 +44,13 @@ function Library:DraggingEnabled(frame, parent)
     end)
 end
 
-local ui = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
+local LibraryName = tostring(math.random(1, 100))..tostring(math.random(1,50))..tostring(math.random(1, 100))
 
 function Library:Toggle()
-    if game.CoreGui[ui].Enabled then
-        game.CoreGui[ui].Enabled = false
-    else
-        game.CoreGui[ui].Enabled = true
+    if game.CoreGui:FindFirstChild(LibraryName).Enabled then 
+        game.CoreGui:FindFirstChild(LibraryName).Enabled = false
+    else 
+        game.CoreGui:FindFirstChild(LibraryName).Enabled = true
     end
 end
 
@@ -82,7 +82,7 @@ function Library:Window(title)
     
     Library:DraggingEnabled(tabs, Main)
 
-    ui.Name = "ui"
+    ui.Name = LibraryName
     ui.Parent = game.CoreGui
     ui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
 
@@ -377,6 +377,7 @@ coroutine.wrap(GRIR_fake_script)()
             Button.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
             Button.BorderSizePixel = 0
             Button.Size = UDim2.new(1, -6, 0, 34)
+            Button.Position = UDim2.new(0.198795184, 0, 0.0214592274, 0)
             Button.AutoButtonColor = false
             Button.Font = Enum.Font.Gotham
             Button.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -428,7 +429,7 @@ coroutine.wrap(GRIR_fake_script)()
             Title.Position = UDim2.new(0, 8, 0, 0)
             Title.Size = UDim2.new(1, -6, 1, 0)
             Title.Font = Enum.Font.Gotham
-            Title.Text = "Toggle"
+            Title.Text = title or "Toggle"
             Title.TextColor3 = Color3.fromRGB(255, 255, 255)
             Title.TextSize = 14.000
             Title.TextXAlignment = Enum.TextXAlignment.Left
