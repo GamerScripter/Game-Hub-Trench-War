@@ -1,5 +1,4 @@
--- This Ui Library Is Not Mine Credits To Owner I Only Added/Edited Some Stuff
-local dark_UI = {}
+local Library = {}
 
 --// Destroy other instances
 for _,v in pairs(game.CoreGui:GetChildren()) do
@@ -10,18 +9,18 @@ end
 
 local LibName = tostring(math.random(100000,200000))..tostring(math.random(100000,200000))..tostring(math.random(100000,200000))
 
-function dark_UI:ToggleUi()
-    if game.CoreGui:FindFirstChild(LibName).Enabled then 
-        game.CoreGui:FindFirstChild(LibName).Enabled = false
-    else 
-        game.CoreGui:FindFirstChild(LibName).Enabled = true
+function Library:ToggleUi()
+    if game.CoreGui[LibName].Enabled then
+        game.CoreGui[LibName].Enabled = false
+    else
+        game.CoreGui[LibName].Enabled = true
     end
 end
 
 local dark_UI = Instance.new("ScreenGui")
 dark_UI.Name = "LibName"
 dark_UI.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-dark_UI.Parent = game.CoreGui
+dark_UI.Parent = game:GetService("CoreGui")
 
 local TweenService = game:GetService("TweenService")
 local RunService = game:GetService("RunService")
@@ -31,7 +30,7 @@ local LocalPlayer = Players.LocalPlayer
 local Mouse = LocalPlayer:GetMouse()
 local HTTPService = game:GetService("HttpService")
 
-function dark_UI:Create(table)
+function Library:Create(table)
     local windowName = table.Name
 
     local main = Instance.new("Frame")
@@ -549,4 +548,4 @@ function dark_UI:Create(table)
     return tabHandler
 end
 
-return dark_UI
+return Library
