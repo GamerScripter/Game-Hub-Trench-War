@@ -82,6 +82,10 @@ function Library:Window(title)
     
     Library:DraggingEnabled(tabs, Main)
 
+    function Library:Destroy()
+         ui:Remove()
+    end
+
     ui.Name = LibraryName
     ui.Parent = game.CoreGui
     ui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
@@ -166,7 +170,6 @@ function Library:Window(title)
     Logo.Size = UDim2.new(0, 26, 0, 30)
     Logo.Image = "http://www.roblox.com/asset/?id=7803241868"
     Logo.ImageColor3 = Color3.fromRGB(20, 52, 164)
-    
     
     Close.Name = "Close"
     Close.Parent = Top
@@ -539,7 +542,7 @@ coroutine.wrap(GRIR_fake_script)()
             
             SliderDrag.Name = "SliderDrag"
             SliderDrag.Parent = SliderClick
-            SliderDrag.BackgroundColor3 = Color3.fromRGB(188, 14, 69)
+            SliderDrag.BackgroundColor3 = Color3.fromRGB(20, 52, 164)
             SliderDrag.Size = UDim2.new(0, 120, 1, 0)
             
             UICorner_3.CornerRadius = UDim.new(0, 6)
@@ -571,14 +574,14 @@ coroutine.wrap(GRIR_fake_script)()
                     end
     
                 SliderClick.InputBegan:Connect(function(input) 
-                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                if input.UserInputType == Enum.UserInputType.MouseButton1 or Enum.UserInputType.Touch then
                     slide(input)
                     dragging = true
                 end
             end) 
     
             SliderClick.InputEnded:Connect(function(input)
-                if input.UserInputType == Enum.UserInputType.MouseButton1 then
+                if input.UserInputType == Enum.UserInputType.MouseButton1 or Enum.UserInputType.Touch then
                     dragging = false
                 end
             end)
@@ -658,6 +661,71 @@ coroutine.wrap(GRIR_fake_script)()
             end)
         end
         
+        function TabFunctions:Textbox(Name,Default,Callback)
+            local Name = Name or "Textbox"
+            local Default = Default or ""
+            local Callback = Callback or function() end
+            local TextboxFrame = Instance.new("Frame")
+            local TextboxFrameCorner = Instance.new("UICorner")
+            local TextboxName = Instance.new("TextLabel")
+            local TextboxNamePadding = Instance.new("UIPadding")
+            local Textbox = Instance.new("TextBox")
+            local TextboxCorner = Instance.new("UICorner")
+
+            TextboxFrame.Name = tostring(Name).."_Textbox"
+            TextboxFrame.Parent = Tab
+            TextboxFrame.BackgroundColor3 = Color3.fromRGB(20, 20,20)
+            TextboxFrame.Size = UDim2.new(1, -6, 0, 34)
+
+            TextboxFrameCorner.Name = "TextboxFrameCorner"
+            TextboxFrameCorner.Parent = TextboxFrame
+
+            TextboxName.Name = "TextboxName"
+            TextboxName.Parent = TextboxFrame
+            TextboxName.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            TextboxName.BackgroundTransparency = 1.000
+            TextboxName.BorderSizePixel = 0
+            TextboxName.Size = UDim2.new(0, 235, 0, 35)
+            TextboxName.Font = Enum.Font.Gotham
+            TextboxName.Text = Name
+            TextboxName.TextColor3 = Color3.fromRGB(255, 255, 255)
+            TextboxName.TextSize = 16.000
+            TextboxName.TextXAlignment = Enum.TextXAlignment.Left
+
+            TextboxNamePadding.Name = "TextboxNamePadding"
+            TextboxNamePadding.Parent = TextboxName
+            TextboxNamePadding.PaddingLeft = UDim.new(0, 10)
+
+            Textbox.Name = "Textbox"
+            Textbox.Parent = TextboxFrame
+            Textbox.BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+            Textbox.BorderSizePixel = 0
+            Textbox.Position = UDim2.new(0.610294104, 0, 0.171428576, 0)
+            Textbox.Size = UDim2.new(0, 150, 0, 23)
+            Textbox.Font = Enum.Font.Gotham
+            Textbox.PlaceholderColor3 = Color3.fromRGB(255, 255, 255)
+            Textbox.PlaceholderText = Default
+            Textbox.Text = ""
+            Textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Textbox.TextSize = 14.000
+
+            TextboxCorner.Name = "TextboxCorner"
+            TextboxCorner.Parent = Textbox
+
+            Textbox.Focused:Connect(function()
+                game:GetService("TweenService"):Create(Textbox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+                    BackgroundColor3 = Color3.fromRGB(20, 52, 164)
+                }):Play()
+            end)
+
+            Textbox.FocusLost:Connect(function()
+                game:GetService("TweenService"):Create(Textbox, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
+                    BackgroundColor3 = Color3.fromRGB(20, 20, 20)
+                }):Play()
+                Callback(Textbox.Text)
+            end)
+        end
+        
         function TabFunctions:Dropdown(title, list, callback)
                 list = list or {}
                 callback = callback or function() end
@@ -719,12 +787,10 @@ coroutine.wrap(GRIR_fake_script)()
                 arrow.Size = UDim2.new(0, 28, 0, 28)
                 arrow.ZIndex = 2
                 arrow.Image = "rbxassetid://3926307971"
-                arrow.ImageColor3 = Color3.fromRGB(161, 12, 59)
+                arrow.ImageColor3 = Color3.fromRGB(20, 52, 164)
                 arrow.ImageRectOffset = Vector2.new(324, 524)
                 arrow.ImageRectSize = Vector2.new(36, 36)
                 arrow.ScaleType = Enum.ScaleType.Crop
-                
-                
 
                 OptionHolder.Name = "OptionHolder"
                 OptionHolder.Parent = Dropdown
@@ -745,7 +811,7 @@ coroutine.wrap(GRIR_fake_script)()
                 UIPadding.PaddingTop = UDim.new(0, 8)
                 
                 Choose.InputBegan:Connect(function(inp)
-                    if inp.UserInputType == Enum.UserInputType.MouseButton1 then 
+                    if inp.UserInputType == Enum.UserInputType.MouseButton1 or Enum.UserInputType.Touch then 
                         if not dropped then
                             Dropdown:TweenSize(UDim2.new(1, -7,0, UIListLayout_69.AbsoluteContentSize.Y), Enum.EasingDirection.Out, Enum.EasingStyle.Quad, .15, true)
                             TweenService:Create(arrow, TweenInfo.new(.15, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {Rotation = 180}, true):Play()
@@ -826,7 +892,6 @@ coroutine.wrap(GRIR_fake_script)()
                    end)
                 end
                                     OptionHolder:TweenSize(UDim2.new(1, 0, 0, OptionList.AbsoluteContentSize.Y + 15), Enum.EasingDirection.Out, Enum.EasingStyle.Quart, .15, true)
-
             end
             return DropdownFunc
         end
