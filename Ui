@@ -661,7 +661,7 @@ coroutine.wrap(GRIR_fake_script)()
             end)
         end
         
-        function TabFunctions:Textbox(Name,Default,Callback)
+        function TabFunctions:Textbox(Name, Default, Callback)
             local Name = Name or "Textbox"
             local Default = Default or ""
             local Callback = Callback or function() end
@@ -673,11 +673,11 @@ coroutine.wrap(GRIR_fake_script)()
             local TextboxCorner = Instance.new("UICorner")
 
             TextboxFrame.Name = tostring(Name).."_Textbox"
-            TextboxFrame.Parent = Tab
+            TextboxFrame.Parent = Page
             TextboxFrame.BackgroundColor3 = Color3.fromRGB(20, 20,20)
             TextboxFrame.Size = UDim2.new(1, -6, 0, 34)
 
-            TextboxFrameCorner.Name = "TextboxFrameCorner"
+            TextboxFrameCorner.CornerRadius = UDim.new(0, 6)
             TextboxFrameCorner.Parent = TextboxFrame
 
             TextboxName.Name = "TextboxName"
@@ -709,7 +709,7 @@ coroutine.wrap(GRIR_fake_script)()
             Textbox.TextColor3 = Color3.fromRGB(255, 255, 255)
             Textbox.TextSize = 14.000
 
-            TextboxCorner.Name = "TextboxCorner"
+            TextboxCorner.CornerRadius = UDim.new(0, 4)
             TextboxCorner.Parent = Textbox
 
             Textbox.Focused:Connect(function()
