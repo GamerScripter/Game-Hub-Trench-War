@@ -95,7 +95,7 @@ function Library:Window(title)
     Main.BackgroundColor3 = Color3.fromRGB(30, 30, 30)
     Main.BorderSizePixel = 0
     Main.Position = UDim2.new(0.377, 0,0.368, 0)
-    Main.Size = UDim2.new(0, 500, 0, 313)
+    Main.Size = UDim2.new(0, 510, 0, 333)
     Main.Active = true
     Main.Selectable = true
     Main.Draggable = true
