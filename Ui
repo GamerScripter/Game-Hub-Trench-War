@@ -496,6 +496,43 @@ coroutine.wrap(GRIR_fake_script)()
             UICorner_6.Parent = TextLabel
         end
         
+        function TabFunctions:Seperator(septext)
+            local Separator = Instance.new("TextLabel")
+            local UICorner_4 = Instance.new("UICorner")
+            
+            Separator.Parent = Page
+            Separator.BackgroundColor3 = Color3.fromRGB(20, 52, 164)
+            Separator.BorderSizePixel = 0
+            Separator.Position = UDim2.new(0.198795184, 0, 0.0214592274, 0)
+            Separator.Size = UDim2.new(1, -6, 0, 34)
+            Separator.Font = Enum.Font.Gotham
+            Separator.Text = septext or "Separator" 
+            Separator.TextColor3 = Color3.fromRGB(255, 255, 255)
+            Separator.TextSize = 14.000
+            
+            UICorner_4.CornerRadius = UDim.new(0, 6)
+            UICorner_4.Parent = Separator
+        end
+   
+   	function TabFunctions:Line()
+            local Linee = Instance.new("Frame")
+            local Line = Instance.new("Frame")
+            
+            Linee.Name = "Linee"
+            Linee.Parent = Page
+            Linee.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+            Linee.BackgroundTransparency = 1.000
+            Linee.Position = UDim2.new(0.198795184, 0, 0.0214592274, 0)
+            Linee.Size = UDim2.new(1, -6, 0, 20)
+            
+            Line.Name = "Line"
+            Line.Parent = Linee
+            Line.BackgroundColor3 = Color3.fromRGB(20, 52, 164)
+            Line.BorderSizePixel = 0
+            Line.Position = UDim2.new(0.198795184, 0, 0.0214592274, 0)
+            Line.Size = UDim2.new(1, -6, 0, 1)
+	   end
+
         function TabFunctions:Slider(title, min, max, def, callback)
             local dragging = false
             local Slider = Instance.new("Frame")
@@ -829,7 +866,7 @@ coroutine.wrap(GRIR_fake_script)()
 
                     Option.Name = "Option"
                     Option.Parent = OptionHolder
-                    Option.BackgroundColor3 = Color3.fromRGB(134, 10, 49)
+                    Option.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
                     Option.BorderSizePixel = 0
                     Option.Size = UDim2.new(1, -16, 0, 30)
                     Option.AutoButtonColor = false
@@ -870,7 +907,7 @@ coroutine.wrap(GRIR_fake_script)()
 
                     Option.Name = "Option"
                     Option.Parent = OptionHolder
-                    Option.BackgroundColor3 = Color3.fromRGB(134, 10, 49)
+                    Option.BackgroundColor3 = Color3.fromRGB(35, 35, 35)
                     Option.BorderSizePixel = 0
                     Option.Size = UDim2.new(1, -16, 0, 30)
                     Option.AutoButtonColor = false
