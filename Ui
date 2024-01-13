@@ -523,13 +523,13 @@ coroutine.wrap(GRIR_fake_script)()
             Linee.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             Linee.BackgroundTransparency = 1.000
             Linee.Position = UDim2.new(0.198795184, 0, 0.0214592274, 0)
-            Linee.Size = UDim2.new(1, -6, 0, 20)
+            Linee.Size = UDim2.new(1, -6, 0, 34)
             
             Line.Name = "Line"
             Line.Parent = Linee
             Line.BackgroundColor3 = Color3.fromRGB(20, 52, 164)
             Line.BorderSizePixel = 0
-            Line.Position = UDim2.new(0.198795184, 0, 0.0214592274, 0)
+            Line.Position = UDim2.new(0, 0, 0, 0)
             Line.Size = UDim2.new(1, -6, 0, 1)
 	   end
 
