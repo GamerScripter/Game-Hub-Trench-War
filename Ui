@@ -191,18 +191,6 @@ function Library:Window(title)
     Close.MouseLeave:connect(function()
     TweenService:Create(Close, TweenInfo.new(0.2, Enum.EasingStyle.Quad, Enum.EasingDirection.Out), {ImageColor3 = Color3.fromRGB(166, 166, 166)},true):Play()
     end)
-    
-    Resize.Name = "Resize"
-    Resize.Parent = Main
-    Resize.AnchorPoint = Vector2.new(1, 1)
-    Resize.BackgroundTransparency = 1.000
-    Resize.Position = UDim2.new(1, -4, 1, -4)
-    Resize.Size = UDim2.new(0, 16, 0, 16)
-    Resize.ZIndex = 2
-    Resize.Image = "rbxassetid://3926307971"
-    Resize.ImageColor3 = Color3.fromRGB(20, 52, 164)
-    Resize.ImageRectOffset = Vector2.new(204, 364)
-    Resize.ImageRectSize = Vector2.new(36, 36)
 
     GameName.Name = "GameName"
     GameName.Parent = Top 
@@ -256,54 +244,6 @@ function Library:Window(title)
     Cover.Position = UDim2.new(1, 0, 0.5, 0)
     Cover.Size = UDim2.new(0, 5, 1, 0)
     
-    local function GRIR_fake_script() -- Resize.LocalScript 
-	local script = Instance.new('LocalScript', Resize)
-
-	local mouse = game.Players.LocalPlayer:GetMouse()
-	local input = game:GetService("UserInputService")
-	
-	local main = main
-	
-	local locationX = input:GetMouseLocation().X
-	local locationY = input:GetMouseLocation().Y
-	
-	local defaultX = 470
-	local defaultY = 283
-	
-	Resize.MouseButton1Down:Connect(function()
-		locationX = input:GetMouseLocation().X
-		locationY = input:GetMouseLocation().Y
-		local moveConnection
-		local releaseConnection
-		moveConnection = mouse.Move:Connect(function()
-			local DeltaX = input:GetMouseLocation().X - locationX
-			local DeltaY = input:GetMouseLocation().Y - locationY
-	
-			Main.Size = Main.Size + UDim2.new(0,DeltaX,0,DeltaY)
-			locationX = input:GetMouseLocation().X
-			locationY = input:GetMouseLocation().Y
-		end)
-		releaseConnection = input.InputEnded:Connect(function(inp)
-			if inp.UserInputType == Enum.UserInputType.MouseButton1 or Enum.UserInputType.Touch then
-				moveConnection:disconnect()
-				releaseConnection:disconnect()
-			end
-		end)
-	end)
-	
-	
-	Main.Changed:Connect(function()
-		if Main.Size.X.Offset < defaultX then
-			Main.Size = UDim2.new(0, defaultX, 0, Main.Size.Y.Offset)
-		end
-		if Main.Size.Y.Offset < defaultY then
-			Main.Size = UDim2.new(0, Main.Size.X.Offset, 0, defaultY)
-		end
-	end)
-	
-end
-coroutine.wrap(GRIR_fake_script)()
-
     local Tabs = {}
     function Tabs:Tab(title)
         local UIListLayout = Instance.new('UIListLayout')
@@ -513,25 +453,6 @@ coroutine.wrap(GRIR_fake_script)()
             UICorner_4.CornerRadius = UDim.new(0, 6)
             UICorner_4.Parent = Separator
         end
-   
-   	function TabFunctions:Line()
-            local Linee = Instance.new("Frame")
-            local Line = Instance.new("Frame")
-            
-            Linee.Name = "Linee"
-            Linee.Parent = Page
-            Linee.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-            Linee.BackgroundTransparency = 1.000
-            Linee.Position = UDim2.new(0.198795184, 0, 0.0214592274, 0)
-            Linee.Size = UDim2.new(1, -6, 0, 34)
-            
-            Line.Name = "Line"
-            Line.Parent = Linee
-            Line.BackgroundColor3 = Color3.fromRGB(20, 52, 164)
-            Line.BorderSizePixel = 0
-            Line.Position = UDim2.new(0, 0, 0, 0)
-            Line.Size = UDim2.new(1, -6, 0, 1)
-	   end
 
         function TabFunctions:Slider(title, min, max, def, callback)
             local dragging = false
@@ -934,6 +855,6 @@ coroutine.wrap(GRIR_fake_script)()
         return TabFunctions
     end
     return Tabs
-end
+end 
 return Library
  
